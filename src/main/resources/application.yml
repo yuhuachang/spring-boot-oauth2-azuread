@@ -1,0 +1,18 @@
+security:
+  oauth2:
+    client:
+      clientId: cf7e14a9-f6d4-45a4-8bdb-7b67efd55745
+      clientSecret: +mbkBFlvgyjsFeKKc+Sj/0ddaON5LQjU4KulQvGAcTQ=
+      accessTokenUri: https://login.microsoftonline.com/57e289b5-527b-4356-b8cd-d990c1875a1b/oauth2/token
+      userAuthorizationUri: https://login.microsoftonline.com/57e289b5-527b-4356-b8cd-d990c1875a1b/oauth2/authorize
+      clientAuthenticationScheme: form
+      scope: openid
+    resource:
+      userInfoUri: https://graph.windows.net/me?api-version=1.6
+
+server:
+  port: 80
+
+logging:
+  level:
+    org.springframework.security: DEBUG

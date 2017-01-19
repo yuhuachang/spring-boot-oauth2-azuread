@@ -30,6 +30,10 @@ dependencies {
 	compile('org.springframework.cloud:spring-cloud-starter-oauth2')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.webjars:angularjs:1.4.3')
+	compile('org.webjars:jquery:2.1.1')
+	compile('org.webjars:bootstrap:3.2.0')
+	compile('org.webjars:webjars-locator')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
