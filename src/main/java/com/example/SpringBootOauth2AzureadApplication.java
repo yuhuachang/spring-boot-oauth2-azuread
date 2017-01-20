@@ -6,16 +6,19 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoRestTemplateCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.AccessTokenRequest;
 import org.springframework.security.oauth2.client.token.DefaultRequestEnhancer;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeAccessTokenProvider;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.util.MultiValueMap;
 
 @SpringBootApplication
 @EnableOAuth2Sso
-public class SpringBootOauth2AzureadApplication {
+public class SpringBootOauth2AzureadApplication extends WebSecurityConfigurerAdapter {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootOauth2AzureadApplication.class, args);
@@ -42,6 +45,19 @@ public class SpringBootOauth2AzureadApplication {
             });
         }
     }
-
-
+    
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+        .antMatcher("/**")
+        .authorizeRequests()
+            .antMatchers("/", "/login**", "/webjars/**")
+            .permitAll()
+        .anyRequest()
+            .authenticated()
+        .and()
+            .logout().logoutSuccessUrl("/").permitAll()
+        .and()
+            .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    }
 }
