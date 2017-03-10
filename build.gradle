@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.4.3.RELEASE'
+        springBootVersion = '1.5.2.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -30,11 +30,8 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-oauth2')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.auth0:java-jwt:3.1.0')
     compile("org.springframework.boot:spring-boot-devtools")
-    compile('org.webjars:angularjs:1.4.3')
-    compile('org.webjars:jquery:2.1.1')
-    compile('org.webjars:bootstrap:3.2.0')
-    compile('org.webjars:webjars-locator')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
